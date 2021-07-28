@@ -1,1 +1,1 @@
-# RS-School-React
+# React. Components
