@@ -14,9 +14,11 @@ body {
   padding-top: 50px;
   background-repeat: no-repeat;
   background-position: center 180px;
+  background-color: #f2e0f6;
+  padding: 20px 0 0 0;
 }
 
-.cards-wrapper {
+.cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -28,9 +30,15 @@ body {
 img {
   width: 200px;
   height: 143px;
+  border-radius:10px 10px 0 0;
+}
+
+p{
+  font-size: 16px;
 }
 
 p,
 h3 {
   text-align: center;
+  font-family: cursive;
 }

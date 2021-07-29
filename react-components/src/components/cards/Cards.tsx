@@ -6,7 +6,7 @@ const Cards = (props: { image: string | undefined; word: string | number | boole
     <div className="cards-element-wrapper">
       <img  src={props.image} />
              <h3> {props.word}</h3>
-            <p>translation:{props.translation}</p>
+            <p>translation:     {props.translation}</p>
            
     </div>
 
