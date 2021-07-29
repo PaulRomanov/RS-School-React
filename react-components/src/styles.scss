@@ -15,4 +15,22 @@ body {
   background-repeat: no-repeat;
   background-position: center 180px;
 }
-  
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  margin: auto;
+}
+
+img {
+  width: 200px;
+  height: 143px;
+}
+
+p,
+h3 {
+  text-align: center;
+}
