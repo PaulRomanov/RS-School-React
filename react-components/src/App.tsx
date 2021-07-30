@@ -11,8 +11,10 @@ export const App = () => {
       <SearchEnginePage />
       <div className="cards-wrapper">
         <div className="cards-container">
-          {repository.cardsElements.map(card => {
-            return <Cards word = {card.word}
+          {repository.cardsElements.map((card, index) => {
+            return <Cards 
+              key = {index}
+              word = {card.word}
               translation = {card.translation}
               image = {card.image}
 
