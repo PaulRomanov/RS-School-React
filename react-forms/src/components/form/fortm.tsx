@@ -9,15 +9,16 @@ const Form = () => {
   const [user_surnameDirty, setUser_surnameDirty] = useState(false);
   const [user_nameError, setUser_nameError] = useState('The field cannot be empty');
   const [user_surnameError, setUser_surnameError] = useState('The field cannot be empty');
-  const [formValid, setFormValid] = useState(false)
 
-  const [agreeCheck, setAgreeCheck] = useState(false);
-  const [agreeCheckDirty, setAgreeCheckDirty] = useState(false);
-  const [agreeCheckError, setAgreeCheckError] = useState('Ned to accept an agreement');
+  const [formValid, setFormValid] = useState(false)
 
   const [radioBtn, setRadioBtn] = useState(false);
   const [radioBtnDirty, setRadioBtnDirty] = useState(false);
   const [radioBtnError, setRadioBtnError] = useState('You need to choose a gender');
+
+  const [agreeCheck, setAgreeCheck] = useState(false);
+  const [agreeCheckDirty, setAgreeCheckDirty] = useState(false);
+  const [agreeCheckError, setAgreeCheckError] = useState('Ned to accept an agreement');
  
 
   // блокировка кнопки Submit
@@ -26,8 +27,6 @@ const Form = () => {
       setFormValid(false);
     } else {
       setFormValid(true);
-      
-     
     }
   }, [user_nameError, user_surnameError, agreeCheckError, radioBtnError]) 
   
@@ -62,8 +61,6 @@ const Form = () => {
         break
       case 'agreeCheck':
         setAgreeCheckDirty(true);
-        
-
     }
   }
 
@@ -88,11 +85,6 @@ const Form = () => {
     }
   };
 
-
-// function handleData(e: { preventDefault: () => void; }){
-//   e.preventDefault()
-  
-// }
 
   return (
     <div className="candidate-form">
@@ -151,13 +143,9 @@ const Form = () => {
           {( agreeCheckError && agreeCheckDirty) && <div style={{ color: 'red' }}>{agreeCheckError}</div>} 
             <p>I agree to the processing of data</p>
             <input type="checkbox" name= 'agreeCheck'  onChange={(e) => agreeCheckHandler(e)} />
-
           </ol>
         </ul>
-
       </form>
-
-
       <button disabled={!formValid} type="submit">Submit</button>
     </div>
 
