@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './form.scss';
 
+
 const Form = () => {
   const [user_name, setUser_name] = useState('');
   const [user_surname, setUser_surname] = useState('');
@@ -10,13 +11,25 @@ const Form = () => {
   const [user_surnameError, setUser_surnameError] = useState('The field cannot be empty');
   const [formValid, setFormValid] = useState(false)
 
- useEffect( () => {
-if (user_nameError || user_surnameError){
-setFormValid(false)
-}else {
-  setFormValid(true)
-}
- }, [user_nameError, user_surnameError]) 
+  const [agreeCheck, setAgreeCheck] = useState(false);
+  const [agreeCheckDirty, setAgreeCheckDirty] = useState(false);
+  const [agreeCheckError, setAgreeCheckError] = useState('Ned to accept an agreement');
+
+  const [radioBtn, setradioBtn] = useState(false);
+  const [radioBtnDirty, setRadioBtnDirty] = useState(false);
+  const [radioBtnError, setRadioBtnError] = useState('You need to choose a gender');
+ 
+
+  // блокировка кнопки Submit
+  useEffect(() => {
+    if (user_nameError || user_surnameError || agreeCheckError || radioBtnError ) {
+      setFormValid(false);
+    } else {
+      setFormValid(true);
+      
+     
+    }
+  }, [user_nameError, user_surnameError, agreeCheckError, radioBtnError]) 
 
   const user_nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser_name(e.target.value)
@@ -39,40 +52,67 @@ setFormValid(false)
   }
 
   const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-    switch (e.target.name) {
+    switch (e.target.name ) {
       case 'user_name':
         setUser_nameDirty(true);
         break
       case 'user_surname':
         setUser_surnameDirty(true);
         break
+      case 'agreeCheck':
+        setAgreeCheckDirty(true);
+        
+
     }
   }
+// для checkBox
+  const agreeCheckHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAgreeCheck(e.target.checked);
+    if (!e.target.checked) {
+      setAgreeCheckError('Ned to accept an agreement');
+      setAgreeCheckDirty(true);
+    } else {
+      setAgreeCheckError('');
+    }
+  };
+
+
+// function handleData(e: { preventDefault: () => void; }){
+//   e.preventDefault()
+  
+// }
 
   return (
     <div className="candidate-form">
       <form>
         <ul>
           <ol>
+            {/* сообщение об ошибке */}
             {(user_nameDirty && user_nameError) && <div style={{ color: 'red' }}>{user_nameError}</div>}
             <label>Name:</label>
             <input onChange={e => user_nameHandler(e)} value={user_name} onBlur={e => blurHandler(e)} type="text" id="name" name="user_name"></input>
           </ol>
+          <br/>
           <ol>
+            {/* сообщение об ошибке */}
             {(user_surnameDirty && user_surnameError) && <div style={{ color: 'red' }}>{user_surnameError}</div>}
             <label>Surname:</label>
-            <input  onChange={e => user_surnameHandler(e)} value={user_surname} onBlur={e => blurHandler(e)} type="text" id="surname" name="user_surname"></input>
+            <input onChange={e => user_surnameHandler(e)} value={user_surname} onBlur={e => blurHandler(e)} type="text" id="surname" name="user_surname"></input>
           </ol>
+          <br/>
           <ol><input type="date" id="start" name="trip-start"
-            value=""
+            value="2003-01-01"
             min="1921-01-01" max="2021-08-01"></input>
           </ol>
+          <br/>
           <ol><label>Gender: </label>
             <label>Male</label>
             <input
               type="radio"
               name="gender"
               value="male"
+              // checked={false}
+              // onChange={e => radioMaleHandler(e)}
             />
             <label>Female</label>
             <input
@@ -93,8 +133,11 @@ setFormValid(false)
             </select></p>
           </ol>
           <ol>
+          {/* сообщение об ошибке */}
+          {( agreeCheckError && agreeCheckDirty) && <div style={{ color: 'red' }}>{agreeCheckError}</div>} 
+       
             <p>I agree to the processing of data</p>
-            <input type="checkbox" />
+            <input type="checkbox" name= 'agreeCheck'  onChange={(e) => agreeCheckHandler(e)} />
 
           </ol>
         </ul>
@@ -109,3 +152,7 @@ setFormValid(false)
 }
 
 export default Form;
+function setagreeCheckError(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
