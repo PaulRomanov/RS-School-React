@@ -15,7 +15,7 @@ const Form = () => {
   const [agreeCheckDirty, setAgreeCheckDirty] = useState(false);
   const [agreeCheckError, setAgreeCheckError] = useState('Ned to accept an agreement');
 
-  const [radioBtn, setradioBtn] = useState(false);
+  const [radioBtn, setRadioBtn] = useState(false);
   const [radioBtnDirty, setRadioBtnDirty] = useState(false);
   const [radioBtnError, setRadioBtnError] = useState('You need to choose a gender');
  
@@ -30,6 +30,7 @@ const Form = () => {
      
     }
   }, [user_nameError, user_surnameError, agreeCheckError, radioBtnError]) 
+  
 
   const user_nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser_name(e.target.value)
@@ -65,6 +66,17 @@ const Form = () => {
 
     }
   }
+
+// для radioBtn
+  const radioBtnHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRadioBtn(e.target.checked);
+    if (!e.target.checked) {
+      setRadioBtnError('You need to choose a gender');
+    } else {
+      setRadioBtnError('');
+    }
+  };
+
 // для checkBox
   const agreeCheckHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAgreeCheck(e.target.checked);
@@ -105,20 +117,22 @@ const Form = () => {
             min="1921-01-01" max="2021-08-01"></input>
           </ol>
           <br/>
+          {/* сообщение об ошибке */}
+          {( radioBtnError && radioBtnDirty) && <div style={{ color: 'red' }}>{radioBtnError}</div>} 
           <ol><label>Gender: </label>
             <label>Male</label>
             <input
               type="radio"
               name="gender"
               value="male"
-              // checked={false}
-              // onChange={e => radioMaleHandler(e)}
+              onChange={(e) => radioBtnHandler(e)}
             />
             <label>Female</label>
             <input
               type="radio"
               name="gender"
               value="female"
+              onChange={(e) => radioBtnHandler(e)}
             />
           </ol>
           <ol>
@@ -135,7 +149,6 @@ const Form = () => {
           <ol>
           {/* сообщение об ошибке */}
           {( agreeCheckError && agreeCheckDirty) && <div style={{ color: 'red' }}>{agreeCheckError}</div>} 
-       
             <p>I agree to the processing of data</p>
             <input type="checkbox" name= 'agreeCheck'  onChange={(e) => agreeCheckHandler(e)} />
 
