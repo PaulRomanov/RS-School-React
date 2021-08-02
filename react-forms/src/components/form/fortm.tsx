@@ -19,17 +19,17 @@ const Form = () => {
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [agreeCheckDirty, setAgreeCheckDirty] = useState(false);
   const [agreeCheckError, setAgreeCheckError] = useState('Ned to accept an agreement');
- 
+
 
   // блокировка кнопки Submit
   useEffect(() => {
-    if (user_nameError || user_surnameError || agreeCheckError || radioBtnError ) {
+    if (user_nameError || user_surnameError || agreeCheckError || radioBtnError) {
       setFormValid(false);
     } else {
       setFormValid(true);
     }
-  }, [user_nameError, user_surnameError, agreeCheckError, radioBtnError]) 
-  
+  }, [user_nameError, user_surnameError, agreeCheckError, radioBtnError])
+
 
   const user_nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser_name(e.target.value)
@@ -52,7 +52,7 @@ const Form = () => {
   }
 
   const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-    switch (e.target.name ) {
+    switch (e.target.name) {
       case 'user_name':
         setUser_nameDirty(true);
         break
@@ -64,7 +64,7 @@ const Form = () => {
     }
   }
 
-// для radioBtn
+  // для radioBtn
   const radioBtnHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRadioBtn(e.target.checked);
     if (!e.target.checked) {
@@ -74,7 +74,7 @@ const Form = () => {
     }
   };
 
-// для checkBox
+  // для checkBox
   const agreeCheckHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAgreeCheck(e.target.checked);
     if (!e.target.checked) {
@@ -85,10 +85,15 @@ const Form = () => {
     }
   };
 
+  const [date, setDate] = useState('');
 
   return (
-    <div className="candidate-form">
-      <form>
+    <div className="candidate-form">   
+      <form className="decor">
+      <div className="form-left-decoration"></div>
+      <div className="form-right-decoration"></div>
+      <div className="circle"></div>
+      <div className="form-inner">
         <ul>
           <ol>
             {/* сообщение об ошибке */}
@@ -96,21 +101,28 @@ const Form = () => {
             <label>Name:</label>
             <input onChange={e => user_nameHandler(e)} value={user_name} onBlur={e => blurHandler(e)} type="text" id="name" name="user_name"></input>
           </ol>
-          <br/>
+          <br />
           <ol>
             {/* сообщение об ошибке */}
             {(user_surnameDirty && user_surnameError) && <div style={{ color: 'red' }}>{user_surnameError}</div>}
             <label>Surname:</label>
             <input onChange={e => user_surnameHandler(e)} value={user_surname} onBlur={e => blurHandler(e)} type="text" id="surname" name="user_surname"></input>
           </ol>
-          <br/>
-          <ol><input type="date" id="start" name="trip-start"
-            value="2003-01-01"
-            min="1921-01-01" max="2021-08-01"></input>
+          <br />
+          <ol>
+            <label htmlFor="calendarForTasks" >Date of Birth:</label>
+            <input
+              type="date"
+              id="calendarForTasks"
+              value={date}
+              min={"1921-01-01"}
+              max={"2021-08-01"}
+              onChange={(e) => showCurrentDate()}
+            />
           </ol>
-          <br/>
+          <br />
           {/* сообщение об ошибке */}
-          {( radioBtnError && radioBtnDirty) && <div style={{ color: 'red' }}>{radioBtnError}</div>} 
+          {(radioBtnError && radioBtnDirty) && <div style={{ color: 'red' }}>{radioBtnError}</div>}
           <ol><label>Gender: </label>
             <label>Male</label>
             <input
@@ -129,7 +141,7 @@ const Form = () => {
           </ol>
           <ol>
             <p><select>
-              <option value="1" selected>select the position for which you apply</option>
+              <option value="1" >select the position for which you apply</option>
               <option >Trainee</option>
               <option >Junior Developer</option>
               <option >Middle Developer</option>
@@ -139,21 +151,84 @@ const Form = () => {
             </select></p>
           </ol>
           <ol>
-          {/* сообщение об ошибке */}
-          {( agreeCheckError && agreeCheckDirty) && <div style={{ color: 'red' }}>{agreeCheckError}</div>} 
+            {/* сообщение об ошибке */}
+            {(agreeCheckError && agreeCheckDirty) && <div style={{ color: 'red' }}>{agreeCheckError}</div>}
             <p>I agree to the processing of data</p>
-            <input type="checkbox" name= 'agreeCheck'  onChange={(e) => agreeCheckHandler(e)} />
+            <input type="checkbox" name='agreeCheck' onChange={(e) => agreeCheckHandler(e)} />
           </ol>
         </ul>
+        <button disabled={!formValid} type="submit">Submit</button>
+         </div>
       </form>
-      <button disabled={!formValid} type="submit">Submit</button>
+     
     </div>
 
   )
 }
 
+// const  handleSubmit = (e: any): void =>{
+//   e.preventDefault();
+//   e.target.reset();
+// }
+
+
+function showCurrentDate() {
+
+  // var d = new Date(),
+
+  //   new_value = d.toISOString().slice(0, 10);
+  //   console.log("new_value ДОООО", new_value);
+  let htmlValueId = document.getElementById('calendarForTasks') as HTMLInputElement;
+  htmlValueId.value = " ";
+
+  // htmlValueId.value = new_value;
+
+
+
+  console.log("htmlValueId", htmlValueId);
+  console.log("htmlValueId.value", htmlValueId.value);
+  // console.log("new_value", new_value);
+  var dateControl = document.querySelector('input[type="date"]') as HTMLInputElement;
+  dateControl.value = '2000-06-01';
+  console.log("dateControl.value", dateControl.value);
+
+}
+
+// function showCurrentDate()
+// {
+//     var getCurrentDay = new Date();
+//     var year = getCurrentDay.getFullYear();
+//     var month: String = '';
+//     var month1 = getCurrentDay.getMonth() + 1;
+//      if(month1 < 10){
+//         month = '0' + month1  ;
+//     }else{
+//         month = month1;
+//     }
+//     var day = '';
+//     if(getCurrentDay.getDate() < 10){
+//         day = '0' + getCurrentDay.getDate();
+//     }
+//     else{
+//         day = getCurrentDay.getDate();
+//     }
+//     var value1 = year + "-" + month + "-" + day ;
+//     value1.toString();
+//     var valueOld = document.getElementById("calendarForTasks");
+//     valueOld.setAttribute('value', value1);
+// }
+
+
+
+
+
+
 export default Form;
 function setagreeCheckError(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
+function e(e: any) {
   throw new Error('Function not implemented.');
 }
 
