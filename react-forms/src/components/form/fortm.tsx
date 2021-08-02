@@ -20,6 +20,8 @@ const Form = () => {
   const [agreeCheckDirty, setAgreeCheckDirty] = useState(false);
   const [agreeCheckError, setAgreeCheckError] = useState('Ned to accept an agreement');
 
+  const [birthDate, setBirthDate] = useState('');
+
 
   // блокировка кнопки Submit
   useEffect(() => {
@@ -85,7 +87,8 @@ const Form = () => {
     }
   };
 
-  const [date, setDate] = useState('');
+  
+  
 
   return (
     <div className="candidate-form">   
@@ -110,15 +113,17 @@ const Form = () => {
           </ol>
           <br />
           <ol>
-            <label htmlFor="calendarForTasks" >Date of Birth:</label>
+            <label htmlFor="birthDate" >Date of Birth:
             <input
               type="date"
+              name = "birthDate"
               id="calendarForTasks"
-              value={date}
+              value={birthDate}
               min={"1921-01-01"}
               max={"2021-08-01"}
-              onChange={(e) => showCurrentDate()}
+              onChange={(e) => setBirthDate(e.target.value)}
             />
+            </label>
           </ol>
           <br />
           {/* сообщение об ошибке */}
@@ -165,61 +170,6 @@ const Form = () => {
 
   )
 }
-
-// const  handleSubmit = (e: any): void =>{
-//   e.preventDefault();
-//   e.target.reset();
-// }
-
-
-function showCurrentDate() {
-
-  // var d = new Date(),
-
-  //   new_value = d.toISOString().slice(0, 10);
-  //   console.log("new_value ДОООО", new_value);
-  let htmlValueId = document.getElementById('calendarForTasks') as HTMLInputElement;
-  htmlValueId.value = " ";
-
-  // htmlValueId.value = new_value;
-
-
-
-  console.log("htmlValueId", htmlValueId);
-  console.log("htmlValueId.value", htmlValueId.value);
-  // console.log("new_value", new_value);
-  var dateControl = document.querySelector('input[type="date"]') as HTMLInputElement;
-  dateControl.value = '2000-06-01';
-  console.log("dateControl.value", dateControl.value);
-
-}
-
-// function showCurrentDate()
-// {
-//     var getCurrentDay = new Date();
-//     var year = getCurrentDay.getFullYear();
-//     var month: String = '';
-//     var month1 = getCurrentDay.getMonth() + 1;
-//      if(month1 < 10){
-//         month = '0' + month1  ;
-//     }else{
-//         month = month1;
-//     }
-//     var day = '';
-//     if(getCurrentDay.getDate() < 10){
-//         day = '0' + getCurrentDay.getDate();
-//     }
-//     else{
-//         day = getCurrentDay.getDate();
-//     }
-//     var value1 = year + "-" + month + "-" + day ;
-//     value1.toString();
-//     var valueOld = document.getElementById("calendarForTasks");
-//     valueOld.setAttribute('value', value1);
-// }
-
-
-
 
 
 
