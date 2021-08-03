@@ -20,7 +20,7 @@ const Form = ({ setFormValues }: any) => {
   const [user_surnameError, setUser_surnameError] = useState('The field cannot be empty');
 
   const [formValid, setFormValid] = useState(false);
-  
+  // useState<string | null | boolean | undefined>('');
   const [radioBtn, setRadioBtn] = useState<string | null>('');
   const [radioBtnDirty, setRadioBtnDirty] = useState(false);
   const [radioBtnError, setRadioBtnError] = useState('You need to choose a gender');
@@ -39,19 +39,22 @@ const Form = ({ setFormValues }: any) => {
 
   const handlerSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    // if (Object.keys(Error).length === 0){
-      setFormValues((state: any)=>[...state, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
+      setFormValues((state: [])=>[...state, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
       reset();
   }
 
   const reset = () => {
     setAgreeCheck(false);
     setRadioBtn('');
+    // setRadioBtn(false);
     setBirthDate('');
     setJobPosition('');
     setUser_name('');
     setUser_surname('');
     // setFormValid(false);
+    // let radioInput = document.querySelector('input[name="radioBtn"]:checked') as HTMLInputElement;
+    // radioInput.innerHTML = '';
+    
   }
 
   // блокировка кнопки Submit
@@ -109,7 +112,7 @@ const Form = ({ setFormValues }: any) => {
 
   const radioBtnHandler = (e: React.ChangeEvent<HTMLInputElement>) => {  
     setRadioBtn(e.target.value);
-
+    // setRadioBtn(e.target.checked);
     if (!e.target.checked) {
       setRadioBtnError('You need to choose a gender');
       setRadioBtnDirty(true);
@@ -118,11 +121,12 @@ const Form = ({ setFormValues }: any) => {
     }
   };
 
+
   // для checkBox
   const agreeCheckHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAgreeCheck(e.target.checked);
     if (!e.target.checked) {
-      setAgreeCheckError('Ned to accept an agreement');
+      setAgreeCheckError('Need to accept an agreement');
       setAgreeCheckDirty(true);
     } else {
       setAgreeCheckError('');
@@ -213,8 +217,8 @@ const Form = ({ setFormValues }: any) => {
               value="male" 
               id="maleRadio"
               onChange={(e) => radioBtnHandler(e)} 
-              // checked={radioBtn}
-              // defaultChecked={false} 
+              checked={radioBtn === 'male'}
+              
               /> 
               <label>Female</label>
               <input
@@ -223,8 +227,8 @@ const Form = ({ setFormValues }: any) => {
                 value="female"
                 id="femaleRadio"
                 onChange={(e) => radioBtnHandler(e)}
-                // checked={radioBtn}
-                // defaultChecked={false} 
+                checked={radioBtn === 'female'}
+               
               />
             </ol>
             <ol>
