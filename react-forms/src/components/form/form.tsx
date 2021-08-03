@@ -21,54 +21,47 @@ const Form = ({ setFormValues }: any) => {
 
   const [formValid, setFormValid] = useState(false);
   
-  const [radioBtn, setRadioBtn] = useState(false);
+  const [radioBtn, setRadioBtn] = useState<string | null>('');
   const [radioBtnDirty, setRadioBtnDirty] = useState(false);
   const [radioBtnError, setRadioBtnError] = useState('You need to choose a gender');
 
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [agreeCheckDirty, setAgreeCheckDirty] = useState(false);
-  const [agreeCheckError, setAgreeCheckError] = useState('Ned to accept an agreement');
+  const [agreeCheckError, setAgreeCheckError] = useState('Need to accept an agreement');
 
   const [birthDate, setBirthDate] = useState('');
   const [birthDateDirty, setBirthDateDirty] = useState(false);
-  const [birthDateError, setBirthDateError] = useState('Ned to accept an agreement');
+  const [birthDateError, setBirthDateError] = useState('Need to accept an agreement');
 
+  // useState<string | undefined>('');
   const [jobPosition, setJobPosition] = useState('');
+  // const [jobPositionError, setjobPositionError] = useState('You need to choose a position');
 
   const handlerSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     // if (Object.keys(Error).length === 0){
       setFormValues((state: any)=>[...state, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
       reset();
-    // }
-    
-  // console.log('SUBMIT');
-  //   console.log(user_name);
-  //   console.log(user_surname);
-  //   console.log(birthDate);
-  //   console.log(radioBtn);
-  //   console.log(agreeCheck);
-  //   console.log(jobPosition);
   }
 
   const reset = () => {
     setAgreeCheck(false);
-    setRadioBtn(false);
+    setRadioBtn('');
     setBirthDate('');
     setJobPosition('');
     setUser_name('');
     setUser_surname('');
-   
+    // setFormValid(false);
   }
 
   // блокировка кнопки Submit
   useEffect(() => {
-    if (user_nameError || user_surnameError || agreeCheckError || radioBtnError || birthDateError) {
+    if (user_nameError || user_surnameError || agreeCheckError  || birthDateError || radioBtnError) {
       setFormValid(false);
     } else {
       setFormValid(true);
     }
-  }, [user_nameError, user_surnameError, agreeCheckError, radioBtnError, birthDateError]);
+  }, [user_nameError, user_surnameError, agreeCheckError,  birthDateError, radioBtnError ]);
 
   const user_nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser_name(e.target.value);
@@ -85,8 +78,6 @@ const Form = ({ setFormValues }: any) => {
     const re = /^[a-zA-Z ]+$/;
     if (!re.test(String(e.target.value).toLowerCase())) {
       setUser_surnameError('Invalid surname');
-
-      // console.log(document.getElementById('btnSubmitId'));
     } else {
       setUser_surnameError('');
     }
@@ -115,10 +106,13 @@ const Form = ({ setFormValues }: any) => {
   };
 
   // для radioBtn
-  const radioBtnHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioBtn(e.target.checked);
+
+  const radioBtnHandler = (e: React.ChangeEvent<HTMLInputElement>) => {  
+    setRadioBtn(e.target.value);
+
     if (!e.target.checked) {
       setRadioBtnError('You need to choose a gender');
+      setRadioBtnDirty(true);
     } else {
       setRadioBtnError('');
     }
@@ -135,23 +129,18 @@ const Form = ({ setFormValues }: any) => {
     }
   };
 
-  // document.getElementById('btnSubmitId')?.onclick = () => {
-  //     console.log('SUBMIT CLICK');
-  //   }
 
-  // события при нажатии на кнопку Submit
-  // const doSubmit = function (e: { preventDefault: () => void }) {
-  //   e.preventDefault();
-  //   console.log('SUBMIT');
-  //   console.log(user_name);
-  //   console.log(user_surname);
-  //   console.log(birthDate);
-  //   console.log(radioBtn);
-  //   console.log(agreeCheck);
-  //   console.log(jobPosition);
-  //   // document.getElementById('name')?.value;
-  //   // let inputValue = (document.getElementById('name'))?.value;
+  //  // для списка
+  //  const jobPositionHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setJobPosition(e);
+  //   if (!e.target.value) {
+  //     setjobPositionError('You need to choose a position');
+  //     // setAgreeCheckDirty(true);
+  //   } else {
+  //     setjobPositionError('');
+  //   }
   // };
+
 
   return (
     <div className="candidate-form">
@@ -222,16 +211,20 @@ const Form = ({ setFormValues }: any) => {
               <input type="radio" 
               name="radioBtn" 
               value="male" 
+              id="maleRadio"
               onChange={(e) => radioBtnHandler(e)} 
               // checked={radioBtn}
+              // defaultChecked={false} 
               /> 
               <label>Female</label>
               <input
                 type="radio"
                 name="radioBtn"
                 value="female"
+                id="femaleRadio"
                 onChange={(e) => radioBtnHandler(e)}
                 // checked={radioBtn}
+                // defaultChecked={false} 
               />
             </ol>
             <ol>
@@ -242,6 +235,7 @@ const Form = ({ setFormValues }: any) => {
                     name="jobPosition"
                     value={jobPosition}
                     onChange={(e) => setJobPosition(e.target.value)}
+                    // onChange={() => jobPositionHandler(e)}
                   >
                     <option value="1">select the position</option>
                     <option >Trainee</option>

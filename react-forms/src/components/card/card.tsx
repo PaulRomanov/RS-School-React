@@ -14,7 +14,7 @@ type CardProps = {
 
 
 const Card = ({ item }: CardProps) => {
-
+console.log(item);
   return (
     <div className="card-wrapper">
 
@@ -32,7 +32,7 @@ const Card = ({ item }: CardProps) => {
       </div>
       <div className="card-item">
         <div className="description-item">Gender: </div>
-        {item.radioBtn}
+        {item.radioBtn}        
       </div>
       <div className="card-item">
         <div className="description-item">Vacancy:</div>
