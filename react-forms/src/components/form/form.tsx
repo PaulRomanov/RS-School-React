@@ -35,18 +35,17 @@ const Form = ({ setFormValues }: any) => {
 
   // useState<string | undefined>('');
   const [jobPosition, setJobPosition] = useState<string | undefined>('');
-  // const [jobPositionError, setjobPositionError] = useState('You need to choose a position');
+  const [jobPositionError, setjobPositionError] = useState('You need to choose a position');
 
   const handlerSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
       setFormValues((state: [])=>[...state, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
       reset();
-      setFormValid(false);
+      // setFormValid(false);
   }
 
   const reset = () => {
     setAgreeCheck(false);
-    // setRadioBtn('');
     setRadioBtn(false);
     setBirthDate('');
     setJobPosition('');
@@ -56,13 +55,13 @@ const Form = ({ setFormValues }: any) => {
 
   // блокировка кнопки Submit
   useEffect(() => {
-    if ((agreeCheck === false) || (radioBtn === false) || birthDateError || user_nameError || user_surnameError ) {
+    if ((agreeCheck === false) || (radioBtn === false)  || birthDateError || user_nameError || user_surnameError  || jobPositionError) {
       setFormValid(false);
     }  
     else  {
       setFormValid(true);
     }
-  });
+  }, [user_nameError, user_surnameError, agreeCheckError,  birthDateError, radioBtnError, jobPositionError ]);
 
   // useEffect(() => {
     
@@ -145,15 +144,27 @@ const Form = ({ setFormValues }: any) => {
 
 
   //  // для списка
-  //  const jobPositionHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setJobPosition(e);
-  //   if (!e.target.value) {
+  //  const jobPositionHandler = (jobPosition: React.SetStateAction<string | undefined>) => {
+  //   setJobPosition(jobPosition);
+  //   if (!jobPosition) {
   //     setjobPositionError('You need to choose a position');
   //     // setAgreeCheckDirty(true);
   //   } else {
   //     setjobPositionError('');
   //   }
   // };
+
+
+  const jobPositionHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setJobPosition(e.target.value);
+    if (e.target.value === '1') {
+      setjobPositionError('Сhoose type of payment');
+    } else {
+      setjobPositionError('');
+    }
+  };
+
+
 
 
   return (
@@ -231,7 +242,7 @@ const Form = ({ setFormValues }: any) => {
               id="maleRadio"
               onChange={(e) => radioBtnHandler(e)} 
               checked={radioBtn === 'male'}
-              
+              required
               /> 
               <label>Female</label>
               <input
@@ -241,7 +252,7 @@ const Form = ({ setFormValues }: any) => {
                 id="femaleRadio"
                 onChange={(e) => radioBtnHandler(e)}
                 checked={radioBtn === 'female'}
-               
+                required
               />
             </ol>
             <ol>
@@ -251,10 +262,13 @@ const Form = ({ setFormValues }: any) => {
                   <select
                     name="jobPosition"
                     value={jobPosition}
-                    onChange={(e) => setJobPosition(e.target.value)}
-                    // onChange={() => jobPositionHandler(e)}
+                    // value="jobPosition"
+                    // onChange={(e) => setJobPosition(e.target.value)}
+                    // onChange={(e) => jobPositionHandler(e)}
+                    onChange={(e) => jobPositionHandler(e)}
+                    required
                   >
-                    <option value="1">select the position</option>
+                    <option value="">select the position</option>
                     <option >Trainee</option>
                     <option>Junior Developer</option>
                     <option>Middle Developer</option>
@@ -271,7 +285,14 @@ const Form = ({ setFormValues }: any) => {
                 <div style={{ color: 'red' }}>{agreeCheckError}</div>
               )}
               <p>I agree to the processing of data</p>
-              <input checked={agreeCheck} type="checkbox" name="agreeCheck" id="checkId" onChange={(e) => agreeCheckHandler(e)} />
+              <input 
+              checked={agreeCheck} 
+              type="checkbox" 
+              name="agreeCheck" 
+              id="checkId" 
+              onChange={(e) => agreeCheckHandler(e)} 
+              required
+              />
             </ol>
           </ul>
           <button disabled={!formValid} type="submit" id="btnSubmitId" >
