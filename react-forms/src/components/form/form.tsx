@@ -20,7 +20,7 @@ const Form = ({ setFormValues }: any) => {
   const [user_surnameError, setUser_surnameError] = useState('The field cannot be empty');
 
   const [formValid, setFormValid] = useState(false);
-  // useState<string | null | boolean | undefined>('');
+  
   const [radioBtn, setRadioBtn] = useState<string | boolean>(false);
   const [radioBtnDirty, setRadioBtnDirty] = useState(false);
   const [radioBtnError, setRadioBtnError] = useState('You need to choose a gender');
@@ -33,7 +33,6 @@ const Form = ({ setFormValues }: any) => {
   const [birthDateDirty, setBirthDateDirty] = useState(false);
   const [birthDateError, setBirthDateError] = useState('Need to accept an agreement');
 
-  // useState<string | undefined>('');
   const [jobPosition, setJobPosition] = useState<string | undefined>('');
   const [jobPositionError, setjobPositionError] = useState('You need to choose a position');
 
@@ -41,7 +40,6 @@ const Form = ({ setFormValues }: any) => {
     event.preventDefault();
       setFormValues((state: [])=>[...state, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
       reset();
-      // setFormValid(false);
   }
 
   const reset = () => {
@@ -62,16 +60,6 @@ const Form = ({ setFormValues }: any) => {
       setFormValid(true);
     }
   }, [user_nameError, user_surnameError, agreeCheckError,  birthDateError, radioBtnError, jobPositionError ]);
-
-  // useEffect(() => {
-    
-  //   if (user_nameError || user_surnameError || agreeCheckError  || birthDateError || radioBtnError) {
-  //     setFormValid(false);
-  //   }     
-  //   else  {
-  //     setFormValid(true);
-  //   }
-  // }, [user_nameError, user_surnameError, agreeCheckError,  birthDateError, radioBtnError ]);
 
   const user_nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser_name(e.target.value);
@@ -117,16 +105,13 @@ const Form = ({ setFormValues }: any) => {
   };
 
   // для radioBtn
-
   const radioBtnHandler = (e: React.ChangeEvent<HTMLInputElement>) => {  
     setRadioBtn(e.target.value);
-    // setRadioBtn(e.target.checked);
     if (!e.target.checked) {
       setRadioBtnError('You need to choose a gender');
       setRadioBtnDirty(true);
     } else {
       setRadioBtnError('');
-      // setFormValid(true);
     }
   };
 
@@ -142,19 +127,7 @@ const Form = ({ setFormValues }: any) => {
     }
   };
 
-
-  //  // для списка
-  //  const jobPositionHandler = (jobPosition: React.SetStateAction<string | undefined>) => {
-  //   setJobPosition(jobPosition);
-  //   if (!jobPosition) {
-  //     setjobPositionError('You need to choose a position');
-  //     // setAgreeCheckDirty(true);
-  //   } else {
-  //     setjobPositionError('');
-  //   }
-  // };
-
-
+  // для списка
   const jobPositionHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setJobPosition(e.target.value);
     if (e.target.value === '1') {
@@ -164,12 +137,8 @@ const Form = ({ setFormValues }: any) => {
     }
   };
 
-
-
-
   return (
     <div className="candidate-form">
- {/* onSubmit={handlerSubmit} */}
       <form className="decor" onSubmit={handlerSubmit}>     
         <div className="form-left-decoration" />
         <div className="form-right-decoration" />
@@ -223,8 +192,7 @@ const Form = ({ setFormValues }: any) => {
                   id="calendarForTasks"
                   value={birthDate}
                   min="1921-01-01"
-                  max="2021-08-01"
-                  // onChange={(e) => setBirthDate(e.target.value)}
+                  max="2003-08-01"
                   onChange={(e) => birthDateHandler(e)}
                   required
                 />
@@ -262,9 +230,6 @@ const Form = ({ setFormValues }: any) => {
                   <select
                     name="jobPosition"
                     value={jobPosition}
-                    // value="jobPosition"
-                    // onChange={(e) => setJobPosition(e.target.value)}
-                    // onChange={(e) => jobPositionHandler(e)}
                     onChange={(e) => jobPositionHandler(e)}
                     required
                   >

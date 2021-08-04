@@ -12,12 +12,10 @@ type CardProps = {
   };
 }
 
-
 const Card = ({ item }: CardProps) => {
 console.log(item);
   return (
     <div className="card-wrapper">
-
       <div className="card-item">
         <div className="description-item">Name:</div>
         {item.user_name}
@@ -38,7 +36,6 @@ console.log(item);
         <div className="description-item">Vacancy:</div>
         {item.jobPosition}
       </div>
-
     </div>
   )
 };
