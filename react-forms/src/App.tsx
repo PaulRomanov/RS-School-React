@@ -1,16 +1,26 @@
 import './styles.scss';
 import Form from './components/form/form';
-import Card from './components/card/card';
+import Card, { item2Props } from './components/card/card';
 import { useState } from 'react';
+import { itemProps } from './components/card/card';
+
+
 
 export const App = () => {
-  const [formValues, setFormValues] = useState([]);
+  // const item: item2Props = {
+  //   user_name: '',
+  //   user_surname: '',
+  //   radioBtn: '',
+  //   birthDate: '',
+  //   jobPosition: ''
+  // };
+  const [formValues, setFormValues] = useState<JSX.Element[]>([]);
   return (
     <div>
       <Form setFormValues={setFormValues} />
       <main>
         {formValues.map((item, index) => {
-          return <Card item={item} key={index} />;
+          return <Card itemI={item} key={index} />;
         })}
       </main>
     </div>

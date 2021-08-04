@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './form.scss';
+import { item2Props }  from '../card/card'
 
-type FormProps = {
-  setFormValues:{
-    user_name: string;
-    user_surname: string;
-    radioBtn: string;
-    birthDate: string;
-    jobPosition: string;
-  };
-  }
+// type FormProps = {
+//   setFormValues:{
+//     user_name: string;
+//     user_surname: string;
+//     radioBtn: string;
+//     birthDate: string;
+//     jobPosition: string;
+//   };
+//   }
   
-const Form = ({ setFormValues }: any) => {
+  interface FormProps  {
+    setFormValues: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
+ 
+}
+
+  const Form: FC<FormProps> = ({ setFormValues }) => {
+    
   const [user_name, setUser_name] = useState('');
   const [user_surname, setUser_surname] = useState('');
   const [user_nameDirty, setUser_nameDirty] = useState(false);
@@ -36,9 +43,9 @@ const Form = ({ setFormValues }: any) => {
   const [jobPosition, setJobPosition] = useState<string | undefined>('');
   const [jobPositionError, setjobPositionError] = useState('You need to choose a position');
 
-  const handlerSubmit = (event: { preventDefault: () => void; }) => {
+  const handlerSubmit = (event: { preventDefault: () => void; }, formValues) => {
     event.preventDefault();
-      setFormValues((state: [])=>[...state, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
+      setFormValues([...formValues, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
       reset();
   }
 
@@ -139,11 +146,13 @@ const Form = ({ setFormValues }: any) => {
 
   return (
     <div className="candidate-form">
-      <form className="decor" onSubmit={handlerSubmit}>     
+      <form className="decor" onSubmit={handlerSubmit(formValues)}>     
         <div className="form-left-decoration" />
         <div className="form-right-decoration" />
         <div className="circle" />
         <div className="form-inner">
+        <h3>Candidate card.</h3>
+        <p className="title-form">Fill in all the fields.</p>
           <ul>
             <ol>
               {/* сообщение об ошибке */}

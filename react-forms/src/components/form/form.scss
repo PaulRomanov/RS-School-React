@@ -5,6 +5,31 @@
 body {
   background: #f69a73;
 }
+h3 {
+  margin: 0 0 0 84px;
+}
+
+.title-form {
+  margin: 5px 0 0 81px;
+}
+ul {
+  padding: 0 0 0 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-size: 18px;
+}
+ol {
+  padding: 0 0 0 0;
+  margin: 0 0px 10px 0;
+}
+
+select {
+  margin: 9px 0 0 84px;
+  width: 200px;
+  height: 36px;
+  font-size: 18px;
+}
 
 .decor {
   position: relative;
