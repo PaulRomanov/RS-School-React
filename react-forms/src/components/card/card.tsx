@@ -3,17 +3,17 @@ import React, { FC, useEffect, useState } from 'react';
 import './card.scss';
 
 export interface itemProps {
-  itemI: item2Props  
-};
+  itemI: item2Props;
+}
 
 export interface item2Props {
-    user_name: any;
-    user_surname: any;
-    radioBtn: any;
-    birthDate: any;
-    jobPosition: any;
-    agreeCheck: any;
-};
+  user_name: string;
+  user_surname: string;
+  radioBtn: string | boolean;
+  birthDate: string;
+  jobPosition: string | undefined;
+  agreeCheck: boolean;
+}
 
 const Card: FC<itemProps> = ({ itemI }) => {
   return (
@@ -39,7 +39,7 @@ const Card: FC<itemProps> = ({ itemI }) => {
         {itemI.jobPosition}
       </div>
     </div>
-  )
+  );
 };
 
 export default Card;
