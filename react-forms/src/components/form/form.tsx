@@ -1,18 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
 import './form.scss';
-import { item2Props } from '../card/card';
+import { Item2Props } from '../card/card';
 
 interface FormProps {
-  setFormValues: React.Dispatch<React.SetStateAction<item2Props[]>>;
+  setFormValues: React.Dispatch<React.SetStateAction<Item2Props[]>>;
 }
 
 const Form: FC<FormProps> = ({ setFormValues }) => {
-  const [user_name, setUser_name] = useState('');
-  const [user_surname, setUser_surname] = useState('');
-  const [user_nameDirty, setUser_nameDirty] = useState(false);
-  const [user_surnameDirty, setUser_surnameDirty] = useState(false);
-  const [user_nameError, setUser_nameError] = useState('The field cannot be empty');
-  const [user_surnameError, setUser_surnameError] = useState('The field cannot be empty');
+  const [userName, setUserName] = useState('');
+  const [userSurname, setUserSurname] = useState('');
+  const [userNameDirty, setUserNameDirty] = useState(false);
+  const [userSurnameDirty, setUserSurnameDirty] = useState(false);
+  const [userNameError, setUserNameError] = useState('The field cannot be empty');
+  const [userSurnameError, setUserSurnameError] = useState('The field cannot be empty');
 
   const [formValid, setFormValid] = useState(false);
 
@@ -25,28 +25,28 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
   const [agreeCheckError, setAgreeCheckError] = useState('Need to accept an agreement');
 
   const [birthDate, setBirthDate] = useState('');
-  const [birthDateDirty, setBirthDateDirty] = useState(false);
   const [birthDateError, setBirthDateError] = useState('Need to accept an agreement');
 
   const [jobPosition, setJobPosition] = useState<string | undefined>('');
   const [jobPositionError, setjobPositionError] = useState('You need to choose a position');
-
-  const handlerSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    setFormValues((state) => [
-      ...state,
-      { user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition },
-    ]);
-    reset();
-  };
 
   const reset = () => {
     setAgreeCheck(false);
     setRadioBtn(false);
     setBirthDate('');
     setJobPosition('');
-    setUser_name('');
-    setUser_surname('');
+    setUserName('');
+    setUserSurname('');
+  };
+
+  const handlerSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    setFormValues((state) => [
+      ...state,
+      { userName, userSurname, radioBtn, agreeCheck, birthDate, jobPosition },
+    ]);
+    reset();
+    alert('YOU SUCCESSFULLY SUBMIT YOUR APPLICATION');
   };
 
   // блокировка кнопки Submit
@@ -55,53 +55,62 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
       agreeCheck === false ||
       radioBtn === false ||
       birthDateError ||
-      user_nameError ||
-      user_surnameError ||
-      jobPositionError
+      userNameError ||
+      userSurnameError ||
+      jobPositionError ||
+      agreeCheckError ||
+      radioBtnError
     ) {
       setFormValid(false);
     } else {
       setFormValid(true);
     }
   }, [
-    user_nameError,
-    user_surnameError,
+    userNameError,
+    userSurnameError,
     agreeCheckError,
     birthDateError,
     radioBtnError,
     jobPositionError,
+    agreeCheck,
+    radioBtn,
   ]);
 
-  const user_nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUser_name(e.target.value);
+  const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
     const re = /^[a-zA-Z ]+$/;
     if (!re.test(String(e.target.value).toLowerCase())) {
-      setUser_nameError('Invalid name');
+      setUserNameError('Invalid name');
     } else {
-      setUser_nameError('');
+      setUserNameError('');
     }
   };
 
-  const user_surnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUser_surname(e.target.value);
+  const userSurnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserSurname(e.target.value);
     const re = /^[a-zA-Z ]+$/;
     if (!re.test(String(e.target.value).toLowerCase())) {
-      setUser_surnameError('Invalid surname');
+      setUserSurnameError('Invalid surname');
     } else {
-      setUser_surnameError('');
+      setUserSurnameError('');
     }
   };
 
   const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
     switch (e.target.name) {
-      case 'user_name':
-        setUser_nameDirty(true);
+      case 'userName':
+        setUserNameDirty(true);
         break;
-      case 'user_surname':
-        setUser_surnameDirty(true);
+      case 'userSurname':
+        setUserSurnameDirty(true);
         break;
       case 'agreeCheck':
         setAgreeCheckDirty(true);
+        break;
+      default:
+      // unknown type! based on the language,
+      // there should probably be some error-handling
+      // here, maybe an exception
     }
   };
 
@@ -158,43 +167,43 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
           <ul>
             <ol>
               {/* сообщение об ошибке */}
-              {user_nameDirty && user_nameError && (
-                <div style={{ color: 'red' }}>{user_nameError}</div>
+              {userNameDirty && userNameError && (
+                <div style={{ color: 'red' }}>{userNameError}</div>
               )}
-              <label className="label-name">Name:</label>
+              <label htmlFor="userName" className="label-name">
+                Name:
+              </label>
               <input
-                onChange={(e) => user_nameHandler(e)}
-                value={user_name}
+                onChange={(e) => userNameHandler(e)}
+                value={userName}
                 onBlur={(e) => blurHandler(e)}
                 type="text"
                 id="name"
-                name="user_name"
+                name="userName"
                 required
               />
             </ol>
             <br />
             <ol>
               {/* сообщение об ошибке */}
-              {user_surnameDirty && user_surnameError && (
-                <div style={{ color: 'red' }}>{user_surnameError}</div>
+              {userSurnameDirty && userSurnameError && (
+                <div style={{ color: 'red' }}>{userSurnameError}</div>
               )}
-              <label className="label-suname">Surname:</label>
+              <label htmlFor="surname" className="label-suname">
+                Surname:
+              </label>
               <input
-                onChange={(e) => user_surnameHandler(e)}
-                value={user_surname}
+                onChange={(e) => userSurnameHandler(e)}
+                value={userSurname}
                 onBlur={(e) => blurHandler(e)}
                 type="text"
                 id="surname"
-                name="user_surname"
+                name="userSurname"
                 required
               />
             </ol>
             <br />
             <ol>
-              {/* сообщение об ошибке */}
-              {birthDateError && birthDateDirty && (
-                <div style={{ color: 'red' }}>{birthDateError}</div>
-              )}
               <label htmlFor="birthDate" className="label-date">
                 Date of Birth:
                 <input
@@ -213,8 +222,10 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
             {/* сообщение об ошибке */}
             {radioBtnError && radioBtnDirty && <div style={{ color: 'red' }}>{radioBtnError}</div>}
             <ol>
-              <label>Gender: </label>
-              <label className="label-male">Male</label>
+              <label htmlFor="maleRadio">Gender: </label>
+              <label htmlFor="maleRadio" className="label-male">
+                Male
+              </label>
               <input
                 type="radio"
                 name="radioBtn"
@@ -224,7 +235,7 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
                 checked={radioBtn === 'male'}
                 required
               />
-              <label>Female</label>
+              <label htmlFor="radioBtn">Female</label>
               <input
                 type="radio"
                 name="radioBtn"
@@ -237,13 +248,15 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
             </ol>
             <ol>
               <p>
-                <label>
+                <label htmlFor="jobPosition">
                   select the position for which you apply:
                   <select
                     name="jobPosition"
                     value={jobPosition}
+                    onBlur={(e) => jobPositionHandler(e)}
                     onChange={(e) => jobPositionHandler(e)}
                     required
+                    id="jobPosition"
                   >
                     <option value="">select the position</option>
                     <option>Trainee</option>
@@ -282,10 +295,3 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
 };
 
 export default Form;
-function setagreeCheckError(arg0: string) {
-  throw new Error('Function not implemented.');
-}
-
-function e(e: any) {
-  throw new Error('Function not implemented.');
-}

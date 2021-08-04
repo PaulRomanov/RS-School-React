@@ -1,16 +1,16 @@
 import './styles.scss';
 import { useState } from 'react';
 import Form from './components/form/form';
-import Card, { item2Props } from './components/card/card';
+import Card, { Item2Props } from './components/card/card';
 
 export const App = () => {
-  const [formValues, setFormValues] = useState<item2Props[]>([]);
+  const [formValues, setFormValues] = useState<Item2Props[]>([]);
   return (
     <div>
       <Form setFormValues={setFormValues} />
       <main>
-        {formValues.map((item) => {
-          return <Card itemI={item}  />;
+        {formValues.map((item, index) => {
+          return <Card itemI={item} key={index} />;
         })}
       </main>
     </div>

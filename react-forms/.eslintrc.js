@@ -15,6 +15,8 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
     project: './tsconfig.eslint.json',
+    // project: "PROJECT_NAME/tsconfig.json",
+    // tsconfigRootDir: __dirname,
   },
   rules: {
     'no-unused-vars': 'off',
@@ -24,6 +26,18 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+    "jsx-a11y/label-has-for": [ 2, {
+      "components": [],
+      "required": {
+        "every": [ "nesting", "id" ]
+      },
+      "allowChildren": true
+    }],
+    "jsx-a11y/label-has-for":"off",
+    "jsx-a11y/label-has-associated-control": "off",
+    
+
   },
   settings: {
     react: {

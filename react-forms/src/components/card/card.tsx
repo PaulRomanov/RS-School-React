@@ -1,30 +1,29 @@
-import { disconnect } from 'process';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import './card.scss';
 
-export interface itemProps {
-  itemI: item2Props;
+export interface ItemProps {
+  itemI: Item2Props;
 }
 
-export interface item2Props {
-  user_name: string;
-  user_surname: string;
+export interface Item2Props {
+  userName: string;
+  userSurname: string;
   radioBtn: string | boolean;
   birthDate: string;
   jobPosition: string | undefined;
   agreeCheck: boolean;
 }
 
-const Card: FC<itemProps> = ({ itemI }) => {
+const Card: FC<ItemProps> = ({ itemI }) => {
   return (
     <div className="card-wrapper">
       <div className="card-item">
         <div className="description-item">Name:</div>
-        {itemI.user_name}
+        {itemI.userName}
       </div>
       <div className="card-item">
         <div className="description-item">Surname:</div>
-        {itemI.user_surname}
+        {itemI.userSurname}
       </div>
       <div className="card-item">
         <div className="description-item">Date of Birth:</div>
