@@ -27,17 +27,18 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
-    "jsx-a11y/label-has-for": [ 2, {
-      "components": [],
-      "required": {
-        "every": [ "nesting", "id" ]
+    'jsx-a11y/label-has-for': [
+      2,
+      {
+        components: [],
+        required: {
+          every: ['nesting', 'id'],
+        },
+        allowChildren: true,
       },
-      "allowChildren": true
-    }],
-    "jsx-a11y/label-has-for":"off",
-    "jsx-a11y/label-has-associated-control": "off",
-    
-
+    ],
+    'jsx-a11y/label-has-for': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
   settings: {
     react: {
