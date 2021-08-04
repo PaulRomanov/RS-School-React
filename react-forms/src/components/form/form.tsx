@@ -21,7 +21,7 @@ const Form = ({ setFormValues }: any) => {
 
   const [formValid, setFormValid] = useState(false);
   // useState<string | null | boolean | undefined>('');
-  const [radioBtn, setRadioBtn] = useState<string | null>('');
+  const [radioBtn, setRadioBtn] = useState<string | boolean>(false);
   const [radioBtnDirty, setRadioBtnDirty] = useState(false);
   const [radioBtnError, setRadioBtnError] = useState('You need to choose a gender');
 
@@ -34,37 +34,45 @@ const Form = ({ setFormValues }: any) => {
   const [birthDateError, setBirthDateError] = useState('Need to accept an agreement');
 
   // useState<string | undefined>('');
-  const [jobPosition, setJobPosition] = useState('');
+  const [jobPosition, setJobPosition] = useState<string | undefined>('');
   // const [jobPositionError, setjobPositionError] = useState('You need to choose a position');
 
   const handlerSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
       setFormValues((state: [])=>[...state, {user_name, user_surname, radioBtn, agreeCheck, birthDate, jobPosition}])
       reset();
+      setFormValid(false);
   }
 
   const reset = () => {
     setAgreeCheck(false);
-    setRadioBtn('');
-    // setRadioBtn(false);
+    // setRadioBtn('');
+    setRadioBtn(false);
     setBirthDate('');
     setJobPosition('');
     setUser_name('');
-    setUser_surname('');
-    // setFormValid(false);
-    // let radioInput = document.querySelector('input[name="radioBtn"]:checked') as HTMLInputElement;
-    // radioInput.innerHTML = '';
-    
+    setUser_surname('');    
   }
 
   // блокировка кнопки Submit
   useEffect(() => {
-    if (user_nameError || user_surnameError || agreeCheckError  || birthDateError || radioBtnError) {
+    if ((agreeCheck === false) || (radioBtn === false) || birthDateError || user_nameError || user_surnameError ) {
       setFormValid(false);
-    } else {
+    }  
+    else  {
       setFormValid(true);
     }
-  }, [user_nameError, user_surnameError, agreeCheckError,  birthDateError, radioBtnError ]);
+  });
+
+  // useEffect(() => {
+    
+  //   if (user_nameError || user_surnameError || agreeCheckError  || birthDateError || radioBtnError) {
+  //     setFormValid(false);
+  //   }     
+  //   else  {
+  //     setFormValid(true);
+  //   }
+  // }, [user_nameError, user_surnameError, agreeCheckError,  birthDateError, radioBtnError ]);
 
   const user_nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser_name(e.target.value);
@@ -105,6 +113,7 @@ const Form = ({ setFormValues }: any) => {
       setBirthDateError('Сhoose correct date');
     } else {
       setBirthDateError('');
+      
     }
   };
 
@@ -118,6 +127,7 @@ const Form = ({ setFormValues }: any) => {
       setRadioBtnDirty(true);
     } else {
       setRadioBtnError('');
+      // setFormValid(true);
     }
   };
 
@@ -168,6 +178,7 @@ const Form = ({ setFormValues }: any) => {
                 type="text"
                 id="name"
                 name="user_name"
+                required
               />
             </ol>
             <br />
@@ -184,6 +195,7 @@ const Form = ({ setFormValues }: any) => {
                 type="text"
                 id="surname"
                 name="user_surname"
+                required
               />
             </ol>
             <br />
@@ -203,6 +215,7 @@ const Form = ({ setFormValues }: any) => {
                   max="2021-08-01"
                   // onChange={(e) => setBirthDate(e.target.value)}
                   onChange={(e) => birthDateHandler(e)}
+                  required
                 />
               </label>
             </ol>
