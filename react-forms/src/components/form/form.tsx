@@ -2,16 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import './form.scss';
 import { item2Props } from '../card/card';
 
-// type FormProps = {
-//   setFormValues:{
-//     user_name: string;
-//     user_surname: string;
-//     radioBtn: string;
-//     birthDate: string;
-//     jobPosition: string;
-//   };
-//   }
-
 interface FormProps {
   setFormValues: React.Dispatch<React.SetStateAction<item2Props[]>>;
 }
@@ -171,7 +161,7 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
               {user_nameDirty && user_nameError && (
                 <div style={{ color: 'red' }}>{user_nameError}</div>
               )}
-              <label>Name:</label>
+              <label className="label-name">Name:</label>
               <input
                 onChange={(e) => user_nameHandler(e)}
                 value={user_name}
@@ -188,7 +178,7 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
               {user_surnameDirty && user_surnameError && (
                 <div style={{ color: 'red' }}>{user_surnameError}</div>
               )}
-              <label>Surname:</label>
+              <label className="label-suname">Surname:</label>
               <input
                 onChange={(e) => user_surnameHandler(e)}
                 value={user_surname}
@@ -205,7 +195,7 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
               {birthDateError && birthDateDirty && (
                 <div style={{ color: 'red' }}>{birthDateError}</div>
               )}
-              <label htmlFor="birthDate">
+              <label htmlFor="birthDate" className="label-date">
                 Date of Birth:
                 <input
                   type="date"
@@ -224,7 +214,7 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
             {radioBtnError && radioBtnDirty && <div style={{ color: 'red' }}>{radioBtnError}</div>}
             <ol>
               <label>Gender: </label>
-              <label>Male</label>
+              <label className="label-male">Male</label>
               <input
                 type="radio"
                 name="radioBtn"
@@ -266,7 +256,7 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
                 </label>
               </p>
             </ol>
-            <ol>
+            <ol className="checkbox-box">
               {/* сообщение об ошибке */}
               {agreeCheckError && agreeCheckDirty && (
                 <div style={{ color: 'red' }}>{agreeCheckError}</div>

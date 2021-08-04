@@ -23,12 +23,35 @@ ol {
   padding: 0 0 0 0;
   margin: 0 0px 10px 0;
 }
+.checkbox-box{
+  display: flex;
+    align-items: center;
+}
+#checkId{
+  margin: 0 0 0 37px;
+}
 
 select {
-  margin: 9px 0 0 84px;
+  margin: 9px 0 0 52px;
   width: 200px;
   height: 36px;
   font-size: 18px;
+}
+
+.label-name{
+  margin: 0 70px 0 0px;
+}
+
+.label-suname{
+  margin: 0 48px 0 0;
+}
+
+#calendarForTasks {
+  margin: 0 0 0 51px;
+}
+
+.label-male{
+  margin: 0 0px 0 89px;
 }
 
 .decor {
@@ -121,7 +144,6 @@ button {
   cursor: pointer;
 }
 
-
 input:invalid {
   border: 2px dashed red;
 }
@@ -129,7 +151,3 @@ input:invalid {
 input:invalid:required {
   background-image: linear-gradient(to right, #ff5b5b, #f0b7b7);
 }
-
-// input:valid {
-//   border: 2px solid black;
-// }
