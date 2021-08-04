@@ -1,12 +1,3 @@
-// .candidate-form {
-//   width: 500px;
-//   height: 500px;
-//   background-color: #b1f9a4;
-// }
-
-// form {
-//   padding: 25px 0 0 0;
-// }
 * {
   box-sizing: border-box;
 }
@@ -106,4 +97,14 @@ button {
 }
 
 
+input:invalid {
+  border: 2px dashed red;
+}
 
+input:invalid:required {
+  background-image: linear-gradient(to right, #ff5b5b, #f0b7b7);
+}
+
+// input:valid {
+//   border: 2px solid black;
+// }
