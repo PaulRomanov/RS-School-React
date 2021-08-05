@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f69a73;
+}
+h3 {
+  margin: 0 0 0 84px;
+}
+
+.title-form {
+  margin: 5px 0 0 81px;
+}
+ul {
+  padding: 0 0 0 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-size: 18px;
+}
+ol {
+  padding: 0 0 0 0;
+  margin: 0 0px 10px 0;
+}
+.checkbox-box{
+  display: flex;
+    align-items: center;
+}
+#checkId{
+  margin: 0 0 0 37px;
+}
+
+select {
+  margin: 9px 0 0 52px;
+  width: 200px;
+  height: 36px;
+  font-size: 18px;
+}
+
+.label-name{
+  margin: 0 55px 0 0px;
+}
+
+.label-suname{
+  margin: 0 34px 0 0;
+}
+
+#calendarForTasks {
+  margin: 0 0 0 51px;
+}
+
+.label-male{
+  margin: 0 0px 0 89px;
+}
+
+.decor {
+  position: relative;
+  max-width: 400px;
+  margin: 50px auto 0;
+  background: white;
+  border-radius: 30px;
+}
+
+.form-left-decoration,
+.form-right-decoration {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  background: #f69a73;
+  border-radius: 20px;
+}
+
+.form-left-decoration {
+  bottom: 60px;
+  left: -30px;
+}
+
+.form-right-decoration {
+  top: 60px;
+  right: -30px;
+}
+
+.form-left-decoration:before,
+.form-left-decoration:after,
+.form-right-decoration:before,
+.form-right-decoration:after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  border-radius: 30px;
+  background: white;
+}
+
+.form-left-decoration:before {
+  top: -20px;
+}
+
+.form-left-decoration:after {
+  top: 20px;
+  left: 10px;
+}
+
+.form-right-decoration:before {
+  top: -20px;
+  right: 0;
+}
+
+.form-right-decoration:after {
+  top: 20px;
+  right: 10px;
+}
+
+.circle {
+  position: absolute;
+  bottom: 80px;
+  left: -55px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+}
+
+.form-inner {
+  padding: 50px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background: #E9EFF6;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 30px;
+  background: #f69a73;
+  border-bottom: 4px solid #d87d56;
+   font-size: 14px;
+  cursor: pointer;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, #ff5b5b, #f0b7b7);
+}
+
+// Toast
+#toastId {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -230px;
+  background-color: rgb(241, 239, 70);
+  color: rgb(255, 8, 0);
+  text-align: center;
+  border-radius: 25px;
+  padding: 16px;
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  top: 250px;
+  font-size: 24px;
+}
+
+#toastId.active {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {top: 0; opacity: 0;} 
+  to {top: 250px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {top: 0; opacity: 0;}
+  to {top: 250px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {top: 250px; opacity: 1;} 
+  to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {top: 250px; opacity: 1;}
+  to {top: 0; opacity: 0;}
+}
