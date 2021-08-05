@@ -10,7 +10,7 @@ export const App = () => {
       <Form setFormValues={setFormValues} />
       <main>
         {formValues.map((item, index) => {
-          return <Card itemI={item} key={index} />;
+          return <Card itemI={item} key={index.toString()} />;
         })}
       </main>
     </div>

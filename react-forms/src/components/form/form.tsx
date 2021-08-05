@@ -46,7 +46,6 @@ const Form: FC<FormProps> = ({ setFormValues }) => {
       { userName, userSurname, radioBtn, agreeCheck, birthDate, jobPosition },
     ]);
     reset();
-    alert('YOU SUCCESSFULLY SUBMIT YOUR APPLICATION');
   };
 
   // блокировка кнопки Submit
