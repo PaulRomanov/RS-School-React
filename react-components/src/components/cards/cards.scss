@@ -1,0 +1,17 @@
+.cards-element-wrapper{
+  width: 200px;
+  height: 218px;
+  border: solid 1px rgb(87, 87, 87);
+  margin: 0 30px 30px 0;
+  color: #7d2092;
+  border-radius: 10px;
+  border:none;
+  box-shadow: 10px 4px 10px rgba(0,0,0,0.6);
+  background-color:#e6e0b4;
+  cursor: pointer;
+}
+
+.cards-element-wrapper:hover {
+  opacity: .6;
+  box-shadow: none;
+}
