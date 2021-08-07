@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchLine.scss';
 
-const SearchLine = () => {
+export const SearchLine = () => {
   return (
     <div className="serch-page">
       <form className="form-wrapper">
@@ -12,4 +12,4 @@ const SearchLine = () => {
   );
 };
 
-export default SearchLine;
+
