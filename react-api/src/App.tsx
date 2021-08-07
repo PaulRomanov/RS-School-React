@@ -1,13 +1,12 @@
 import './styles.scss';
-import IMAGE from './assets/react-logo.png';
+import SearchLine from './components/searchLine/SearchLine';
 
 export const App = () => {
   return (
     <>
-      <h1>React TypeScript Webpack Started Template</h1>
-      <img src={IMAGE} alt="react-logo" width="300" height="200" />
+      <SearchLine />
     </>
   );
 };
 
-export default App;
+
