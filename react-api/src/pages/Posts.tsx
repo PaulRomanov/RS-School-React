@@ -15,6 +15,9 @@ const Posts: FC = () => {
     setIsLoading(true);
     setTimeout(async () => {
       try {
+        // const response = await fetch(
+        //   `https://thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail`,
+        // );
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);
         const resJson: Post[] = await response.json();
         setPosts(resJson);

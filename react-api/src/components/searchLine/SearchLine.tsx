@@ -17,8 +17,10 @@ const SearchLine: FC<Props> = ({ setState }) => {
     setIsLoading(true);
     try {
       const response: AxiosResponse<any> = await axiosInstance.get(
+        // `api/json/v1/1/filter.php?c=${searchValue}`,
         `v2/everything?q=${searchValue}&apiKey=${API_KEY}`,
       );
+      // setState(response.data.drinks);
       setState(response.data.articles);
 
       // return response;
