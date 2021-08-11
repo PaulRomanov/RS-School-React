@@ -1,12 +1,9 @@
 import React from 'react';
-import MainPage from '../../pages/MainPage';
+import './card.scss';
 
-const Card = ({ author }) => {
-  return (
-    <div>
-      <p>{state.author}</p>
-    </div>
-  );
+const Card = () => {
+  return <div className="card-wrapper" />;
+  // console.log('author', author);
 };
 
 export default Card;
