@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './card.scss';
+import { CardProps } from '../../type';
 
-// const Card = (author: any) => {
-//   return <div className="card-wrapper">{/* <h3>{author}</h3> */}</div>;
-//   // console.log('author', author);
-// };
-const Card = () => {
-  return <div className="card-wrapper">{/* <h3>{author}</h3> */}</div>;
-  // console.log('author', author);
+const Card: FC<CardProps> = ({ itemElement }) => {
+  return (
+    <div className="card-wrapper">
+      <div>{itemElement.author}</div>
+      <div>{itemElement.title}</div>
+      <div>{itemElement.content}</div>
+    </div>
+  );
 };
 
 export default Card;
