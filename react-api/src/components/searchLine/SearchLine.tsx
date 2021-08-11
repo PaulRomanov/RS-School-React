@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import React, { ChangeEvent, FC, useState } from 'react';
 import axiosInstance from '../../services/api';
 import './searchLine.scss';
+// import Card from '../card/Card';
 
 const API_KEY = '6acc09f802644746b9fafbaeda30a3d6';
 
@@ -27,11 +28,21 @@ const SearchLine: FC = () => {
     }
   };
   console.log('state', state);
+  // console.log('state.data', state[0].author);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchValue(value);
   };
+
+  // eslint-disable-next-line no-lone-blocks
+  // {
+  //   state.author.map(
+  //     (element: { credit_id: React.Key | null | undefined; author: string; character: any }) => (
+  //       <Card key={element.credit_id} author={element.author} />
+  //     ),
+  //   );
+  // }
 
   return (
     <div className="serch-page">
