@@ -1,7 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React, { FC, Suspense } from 'react';
 import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
-import Posts from './pages/Posts';
 import MainPage from './pages/MainPage';
 import './styles.scss';
 
@@ -9,10 +8,6 @@ const navData = [
   {
     Component: <MainPage />,
     path: '/',
-  },
-  {
-    Component: <Posts />,
-    path: '/posts',
   },
 ];
 
