@@ -13,6 +13,7 @@ export type CardProps = {
 export type Props = {
   setState: React.Dispatch<React.SetStateAction<CardType[]>>;
   sortBy: SortType;
+  page: number;
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -29,4 +30,9 @@ export enum SortType {
 export interface SortProps {
   sortBy: SortType;
   setSortBy: (sortBy: SortType) => void;
+}
+
+export interface PaginationProps {
+  page: number;
+  onChangePage: (pageFromInput: number) => void;
 }

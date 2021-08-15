@@ -6,10 +6,9 @@ import { GET200_Articles, Props } from '../../type';
 
 const API_KEY = '90b034fec9b24e1cbad655a0092d8e7f';
 
-const SearchLine: FC<Props> = ({ setState, sortBy }) => {
+const SearchLine: FC<Props> = ({ setState, sortBy, page }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [page, setPage] = useState<Number>(1);
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
