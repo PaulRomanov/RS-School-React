@@ -7,7 +7,7 @@ const Pagination: FC<PaginationProps> = ({ page, onChangePage, pageSize, paginat
   const pageNumber = [];
 
   // eslint-disable-next-line no-plusplus
-  for (let i = 1; i <= Math.ceil(100 / pageSize); i++) {
+  for (let i = 1; i <= Math.ceil(pageSize); i++) {
     pageNumber.push(i);
     // console.log(pageNumber);
   }
