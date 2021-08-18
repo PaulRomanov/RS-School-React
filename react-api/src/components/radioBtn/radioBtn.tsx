@@ -13,7 +13,6 @@ const RadioBtn: FC<SortProps> = ({ sortBy, setSortBy }) => {
           value={SortType.relevancy}
           checked={sortBy === SortType.relevancy}
           onChange={() => setSortBy(SortType.relevancy)}
-          // required
         />
       </label>
       <label htmlFor="radioBtn">
@@ -24,7 +23,6 @@ const RadioBtn: FC<SortProps> = ({ sortBy, setSortBy }) => {
           value={SortType.popularity}
           checked={sortBy === SortType.popularity}
           onChange={() => setSortBy(SortType.popularity)}
-          // required
         />
       </label>
       <label htmlFor="radioBtn">
@@ -35,7 +33,6 @@ const RadioBtn: FC<SortProps> = ({ sortBy, setSortBy }) => {
           value={SortType.publishedAt}
           checked={sortBy === SortType.publishedAt}
           onChange={() => setSortBy(SortType.publishedAt)}
-          // required
         />
       </label>
     </div>

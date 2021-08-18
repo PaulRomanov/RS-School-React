@@ -3,7 +3,6 @@ export interface CardType {
   content: string;
   title: string;
   urlToImage: string;
-  // strDrink: string;
 }
 
 export type CardProps = {
@@ -15,7 +14,6 @@ export type Props = {
   sortBy: SortType;
   page: number;
   pageSize: number;
-  // totalPages: number;
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -37,11 +35,7 @@ export interface SortProps {
 export interface PaginationProps {
   pageSize: number;
   paginate: (pageNumber: number) => void;
-  // pageNumber: [];
-  // totalPages: number;
-  // totalResults: number;
   page: number;
   onChangePage: (pageFromInput: number) => void;
-  // onChangePageSize: (pageSizeFromInput: number) => void;
   setPageSize: (pageSize: number) => void;
 }

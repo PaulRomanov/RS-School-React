@@ -7,18 +7,14 @@ const Pagination: FC<PaginationProps> = ({
   onChangePage,
   pageSize,
   paginate,
-  // onChangePageSize,
   setPageSize,
 }) => {
   const [paginPage, setPaginPage] = useState<number | string>('');
   const pageNumber = [];
 
-  // const [testPage, setTestPage] = useState<number>(5);
-
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i <= Math.ceil(100 / pageSize); i++) {
     pageNumber.push(i);
-    // console.log(pageNumber);
   }
 
   useEffect(() => {
@@ -36,17 +32,13 @@ const Pagination: FC<PaginationProps> = ({
     } else {
       setPaginPage('');
     }
-    // const newValue = matchedValue ? +matchedValue[0] : ''
   };
-  // const numPage = 100 / pageSize;
 
   const handlePageSize = (e: { target: { value: any } }) => {
     const { value } = e.target;
-    // onChangePageSize(value);
+
     setPageSize(value);
-    // setTestPage(value);
-    console.log('value', value);
-    // console.log('testPage', testPage);
+    paginate(1);
   };
 
   return (
@@ -54,14 +46,11 @@ const Pagination: FC<PaginationProps> = ({
       <div className="pagination">
         <input type="text" value={paginPage} onChange={handleChange} />
       </div>
-      {/* <div>{numPage}</div> */}
-
       {pageNumber.map((number) => (
         <button type="button" key={number} onClick={() => paginate(number)}>
           {number}
         </button>
       ))}
-
       <select name="ItemsOnPage " onBlur={handlePageSize}>
         <option value="5">5</option>
         <option value="10">10</option>
