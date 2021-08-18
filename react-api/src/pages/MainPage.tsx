@@ -10,7 +10,7 @@ const MainPage = () => {
   const [state, setState] = useState<CardType[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
   const [page, setPage] = useState<number>(1);
-  const [pageSize] = useState<number>(10);
+  const [pageSize, setPageSize] = useState<number>(5);
   // const [pageArr] = useState([]);
 
   // const lastPage: number = page * pageSize;
@@ -37,6 +37,8 @@ const MainPage = () => {
         // totalResults={pageArr.length}
         onChangePage={(pageFromInput: number) => setPage(pageFromInput)}
         paginate={paginate}
+        // onChangePageSize={(pageSizeFromInput: number) => setPageSize(pageSizeFromInput)}
+        setPageSize={setPageSize}
       />
     </div>
   );
