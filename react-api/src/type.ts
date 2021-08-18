@@ -14,6 +14,8 @@ export type Props = {
   setState: React.Dispatch<React.SetStateAction<CardType[]>>;
   sortBy: SortType;
   page: number;
+  pageSize: number;
+  totalPages: number;
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -33,6 +35,10 @@ export interface SortProps {
 }
 
 export interface PaginationProps {
+  pageSize: number;
+  paginate: (pageNumber: number) => void;
+  pageNumber: [];
+  // totalPages: 100;
   page: number;
   onChangePage: (pageFromInput: number) => void;
 }

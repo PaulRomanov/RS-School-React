@@ -6,7 +6,7 @@ import { GET200_Articles, Props } from '../../type';
 
 const API_KEY = '90b034fec9b24e1cbad655a0092d8e7f';
 
-const SearchLine: FC<Props> = ({ setState, sortBy, page }) => {
+const SearchLine: FC<Props> = ({ setState, sortBy, page, pageSize }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -17,12 +17,13 @@ const SearchLine: FC<Props> = ({ setState, sortBy, page }) => {
       const response: AxiosResponse<GET200_Articles> = await axiosInstance.get(
         // `api/json/v1/1/filter.php?i=${searchValue}`,
         // `v2/everything?q=${searchValue}&apiKey=${API_KEY}`,
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=10&page=${page}`,
+        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`,
       );
 
       // setState(response.data.drinks);
       setState(response.data.articles);
-      // console.log(response.data.drinks);
+
+      // console.log(response.data.articles);
 
       // return response;
     } catch (err: any) {

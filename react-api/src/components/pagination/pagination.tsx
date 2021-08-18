@@ -1,8 +1,16 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { PaginationProps } from '../../type';
+import './pagination.scss';
 
-const Pagination: FC<PaginationProps> = ({ page, onChangePage }) => {
+const Pagination: FC<PaginationProps> = ({ page, onChangePage, pageSize, paginate }) => {
   const [paginPage, setPaginPage] = useState<number | string>('');
+  const pageNumber = [];
+
+  // eslint-disable-next-line no-plusplus
+  for (let i = 1; i <= Math.ceil(100 / pageSize); i++) {
+    pageNumber.push(i);
+    // console.log(pageNumber);
+  }
 
   useEffect(() => {
     setPaginPage(page);
@@ -21,10 +29,23 @@ const Pagination: FC<PaginationProps> = ({ page, onChangePage }) => {
     }
     // const newValue = matchedValue ? +matchedValue[0] : ''
   };
+  // const numPage = 100 / pageSize;
 
   return (
-    <div className="pagination">
-      <input type="text" value={paginPage} onChange={handleChange} />
+    <div className="pagination-wrapper">
+      <div className="pagination">
+        <input type="text" value={paginPage} onChange={handleChange} />
+      </div>
+      {/* <div>{numPage}</div> */}
+      <ul>
+        {pageNumber.map((number) => (
+          <li className="page-item" key={number}>
+            <a href="!#" onClick={() => paginate(number)}>
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

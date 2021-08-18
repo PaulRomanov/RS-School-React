@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import { SortProps, SortType } from '../../type';
+import './radioBtn.scss';
 
 const RadioBtn: FC<SortProps> = ({ sortBy, setSortBy }) => {
   return (
-    <div>
+    <div className="radio-btn-wrapper">
       <label htmlFor="maleRadio" className="label-male">
         relevancy
         <input
