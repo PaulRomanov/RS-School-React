@@ -1,0 +1,24 @@
+ul{
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  margin: 0 19px 0 0;
+  list-style-type: none;
+}
+
+input {
+  width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+.pagination-wrapper {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6px 0 0 0;
+}
