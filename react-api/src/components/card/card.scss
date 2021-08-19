@@ -1,0 +1,28 @@
+.card-wrapper {
+  width: 100%;
+  height: auto;
+  border: solid 2px;
+  background-color: #defce1;
+}
+
+
+
+.card-author,
+.card-title,
+.card-content {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 7px 0 0 10px;
+}
+
+.card-author span,
+.card-title span,
+.card-content span{
+  font-size: 16px;
+  font-weight: normal;
+}
+
+img {
+  width: 150px; 
+  margin: 5px 0 0 10px;
+}
