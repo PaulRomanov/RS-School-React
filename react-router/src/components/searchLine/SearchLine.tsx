@@ -15,17 +15,10 @@ const SearchLine: FC<Props> = ({ setState, sortBy, page, pageSize }) => {
     setIsLoading(true);
     try {
       const response: AxiosResponse<GET200_Articles> = await axiosInstance.get(
-        // `api/json/v1/1/filter.php?i=${searchValue}`,
-        // `v2/everything?q=${searchValue}&apiKey=${API_KEY}`,
         `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`,
       );
 
-      // setState(response.data.drinks);
       setState(response.data.articles);
-
-      // console.log(response.data.articles);
-
-      // return response;
     } catch (err: any) {
       // console.error(e);
     } finally {

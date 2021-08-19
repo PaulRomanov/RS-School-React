@@ -2,14 +2,19 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { PaginationProps } from '../../type';
 import './pagination.scss';
 
-const Pagination: FC<PaginationProps> = ({ page, onChangePage, pageSize, paginate }) => {
+const Pagination: FC<PaginationProps> = ({
+  page,
+  onChangePage,
+  pageSize,
+  paginate,
+  setPageSize,
+}) => {
   const [paginPage, setPaginPage] = useState<number | string>('');
   const pageNumber = [];
 
   // eslint-disable-next-line no-plusplus
-  for (let i = 1; i <= Math.ceil(pageSize); i++) {
+  for (let i = 1; i <= Math.ceil(100 / pageSize); i++) {
     pageNumber.push(i);
-    // console.log(pageNumber);
   }
 
   useEffect(() => {
@@ -27,25 +32,30 @@ const Pagination: FC<PaginationProps> = ({ page, onChangePage, pageSize, paginat
     } else {
       setPaginPage('');
     }
-    // const newValue = matchedValue ? +matchedValue[0] : ''
   };
-  // const numPage = 100 / pageSize;
+
+  const handlePageSize = (e: { target: { value: any } }) => {
+    const { value } = e.target;
+
+    setPageSize(value);
+    paginate(1);
+  };
 
   return (
     <div className="pagination-wrapper">
       <div className="pagination">
         <input type="text" value={paginPage} onChange={handleChange} />
       </div>
-      {/* <div>{numPage}</div> */}
-      <ul>
-        {pageNumber.map((number) => (
-          <li className="page-item" key={number}>
-            <a href="!#" onClick={() => paginate(number)}>
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {pageNumber.map((number) => (
+        <button type="button" key={number} onClick={() => paginate(number)}>
+          {number}
+        </button>
+      ))}
+      <select name="ItemsOnPage " onBlur={handlePageSize}>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
     </div>
   );
 };
