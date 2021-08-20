@@ -8,11 +8,11 @@ const Header = () => {
   return (
     <div>
       <nav>
-        <NavLink exact activeClassName="activ-link" className="nav-link" to="/">
+        <NavLink exact activeClassName="activ-link" className="shine-button" to="/">
           Home
         </NavLink>
 
-        <NavLink activeClassName="activ-link" className="nav-link" to="/about">
+        <NavLink activeClassName="activ-link" className="shine-button" to="/about">
           About
         </NavLink>
       </nav>

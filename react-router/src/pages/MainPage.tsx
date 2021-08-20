@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchLine from '../components/searchLine/SearchLine';
 import Card from '../components/card/Card';
 import { CardType, SortType } from '../type';
@@ -12,6 +12,10 @@ const MainPage = () => {
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
+
+  useEffect(() => {
+    setState(state);
+  }, [state]);
 
   const paginate = (pageNumber: number) => setPage(pageNumber);
 

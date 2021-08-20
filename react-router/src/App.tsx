@@ -2,7 +2,7 @@
 // import { match } from 'assert';
 import React, { FC, Suspense } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import About from './pages/About';
 import MainPage from './pages/MainPage';
 import './styles.scss';
@@ -23,27 +23,22 @@ export const App: FC = () => {
     <BrowserRouter>
       <div className="App">
         <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <div className="container">
-              {navData.map(({ Component, path }): JSX.Element => {
-                return (
-                  <Route path={path} exact key={path.toString()}>
-                    {({ match }) => (
-                      <CSSTransition
-                        in={match != null}
-                        timeout={300}
-                        classNames="page"
-                        unmountOnExit
-                      >
-                        <div className="page">{Component}</div>
-                      </CSSTransition>
-                    )}
-                  </Route>
-                );
-              })}
-            </div>
-            <Redirect to="/" />
-          </Switch>
+          {/* <Switch> */}
+          <div className="container">
+            {navData.map(({ Component, path }): JSX.Element => {
+              return (
+                <Route path={path} exact key={path.toString()}>
+                  {({ match }) => (
+                    <CSSTransition in={match != null} timeout={300} classNames="page" unmountOnExit>
+                      <div className="page">{Component}</div>
+                    </CSSTransition>
+                  )}
+                </Route>
+              );
+            })}
+          </div>
+          {/* <Redirect to="/" /> */}
+          {/* </Switch> */}
         </Suspense>
       </div>
     </BrowserRouter>
