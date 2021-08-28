@@ -1,0 +1,45 @@
+body {
+  background: #f9fee3;
+}
+
+h1 {
+  color: orangered;
+}
+
+.page-enter-active {
+  animation: fade-in 2s forwards;
+}
+.page-exit-active {
+  animation: fade-out 2s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.container {
+  position: relative;
+}
+.page {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
