@@ -8,7 +8,7 @@ const About = () => {
       <Header />
       <div className="about-wrapper">
         <div className="abaut-lorem">Your ad could be here, but alas</div>
-        <img className="img-about" src="../assets/ad.jpg" alt="ad" />
+        <img className="img-about" src="assets/ad.jpg" alt="ad" />
       </div>
     </div>
   );
