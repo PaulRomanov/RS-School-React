@@ -7,7 +7,7 @@ const NotFound = () => {
     <div>
       <nav>
         <NavLink exact activeClassName="activ-link" className="shine-button btn-404" to="/">
-          Home
+          Back to Home page
         </NavLink>
       </nav>
       <img className="img-404" src="assets/404.png" alt="404" />

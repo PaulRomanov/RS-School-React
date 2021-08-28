@@ -36,9 +36,6 @@ const MainPage = () => {
       <Header />
       <SearchLine setSearchValueData={setSearchValueData} />
       <RadioBtn setSortBy={setSortBy} sortBy={sortBy} />
-      {state.map((itemElement, index) => {
-        return <Card key={index.toString()} itemElement={itemElement} />;
-      })}
       <Pagination
         page={page}
         pageSize={pageSize}
@@ -46,6 +43,9 @@ const MainPage = () => {
         paginate={paginate}
         setPageSize={setPageSize}
       />
+      {state.map((itemElement, index) => {
+        return <Card key={index.toString()} itemElement={itemElement} />;
+      })}
     </div>
   );
 };

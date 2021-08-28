@@ -6,7 +6,6 @@ import { CardProps } from '../../type';
 const Card: FC<CardProps> = ({ itemElement }) => {
   return (
     <div className="card-wrapper">
-      {/* <div>{itemElement.strDrink}</div> */}
       <div className="card-author">
         Author: <span>{itemElement.author}</span>
       </div>
@@ -17,7 +16,9 @@ const Card: FC<CardProps> = ({ itemElement }) => {
         Content:<span>{itemElement.content}</span>{' '}
       </div>
       <img src={itemElement.urlToImage} alt="foto" />
-      <Link to={`/details/${itemElement.title}`}>View more</Link>
+      <Link className="view-button" to={`/details/${itemElement.title}`}>
+        View more
+      </Link>
     </div>
   );
 };
