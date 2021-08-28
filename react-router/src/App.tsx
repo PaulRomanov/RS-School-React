@@ -7,6 +7,7 @@ import About from './pages/About';
 import MainPage from './pages/MainPage';
 import './styles.scss';
 import NotFound from './pages/NotFound';
+import Details from './pages/details/details';
 
 // eslint-disable-next-line import/prefer-default-export
 export const App: FC = () => {
@@ -33,9 +34,9 @@ const PagesAll = () => {
             <Route exact path="/about">
               <About />
             </Route>
-            {/* <Route path={/details/:${titleUrl}}>
-                          <Details/>
-                      </Route> */}
+            <Route path="/details/:title">
+              <Details />
+            </Route>
             <Route path="/error">
               <NotFound />
             </Route>

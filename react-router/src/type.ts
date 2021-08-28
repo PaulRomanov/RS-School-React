@@ -10,10 +10,7 @@ export type CardProps = {
 };
 
 export type Props = {
-  setState: React.Dispatch<React.SetStateAction<CardType[]>>;
-  sortBy: SortType;
-  page: number;
-  pageSize: number;
+  setSearchValueData: (searchValueData: string) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
