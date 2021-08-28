@@ -1,7 +1,18 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './notFound.scss';
 
 const NotFound = () => {
-  return <div>The resource can not be found</div>;
+  return (
+    <div>
+      <nav>
+        <NavLink exact activeClassName="activ-link" className="shine-button btn-404" to="/">
+          Home
+        </NavLink>
+      </nav>
+      <img className="img-404" src="assets/404.png" alt="404" />
+    </div>
+  );
 };
 
 export default NotFound;
