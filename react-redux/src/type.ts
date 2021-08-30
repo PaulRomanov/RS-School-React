@@ -15,7 +15,7 @@ export type Props = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export interface GET200_Articles {
-  articles: CardType[];
+  articles: CardType[]; // тоже самое: articles: Array <CardType>;
 }
 
 export enum SortType {
