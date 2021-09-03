@@ -9,6 +9,7 @@ import './mainPage.scss';
 import axiosInstance, { getArticlesLink } from '../services/api';
 import { useSelector } from 'react-redux';
 import { AppRootStateType } from '../redux/store';
+import axios from 'axios';
 
 export const API_KEY = '90b034fec9b24e1cbad655a0092d8e7f';
 
@@ -22,17 +23,35 @@ const MainPage = () => {
   const searchInputValue = useSelector<AppRootStateType, string>(
     (state) => state.articles.searchValue
   );
+  
+
+  const getAvatar = async (searchInputValue: string, API_KEY: string, sortBy: SortType, pageSize: number, page: number): Promise<any> => {
+    const articles = await axios.get(`https://newsapi.org/v2/everything?q=${searchInputValue}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`);
+    console.log(articles);
+  }
+
+  useEffect(() => {
+    try {
+      getAvatar(searchInputValue, API_KEY, sortBy, pageSize, page)
+
+
+    } catch (err: any) {
+      // console.error(err);
+    }
+  }, [page, pageSize, searchInputValue, sortBy])
+
+
 
   const searchSubmit = async (searchInputValue: string, API_KEY: string, sortBy: SortType, pageSize: number, page: number) => {
     try {
       debugger
       const data = await getArticlesLink(searchInputValue, API_KEY, sortBy, pageSize, page)
-      setState(data.articles);
+      setState(data.data.articles);
 
     }
-    catch  (err) {
+    catch (err) {
       return console.log(err);
-      
+
     }
   }
 
