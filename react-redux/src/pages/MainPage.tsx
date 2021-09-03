@@ -6,9 +6,11 @@ import RadioBtn from '../components/radioBtn/radioBtn';
 import Pagination from '../components/pagination/pagination';
 import Header from '../components/header/Header';
 import './mainPage.scss';
-import axiosInstance from '../services/api';
+import axiosInstance, { getArticlesLink } from '../services/api';
+import { useSelector } from 'react-redux';
+import { AppRootStateType } from '../redux/store';
 
-const API_KEY = '90b034fec9b24e1cbad655a0092d8e7f';
+export const API_KEY = '90b034fec9b24e1cbad655a0092d8e7f';
 
 const MainPage = () => {
   const [state, setState] = useState<CardType[]>([]);
@@ -17,24 +19,49 @@ const MainPage = () => {
   const [pageSize, setPageSize] = useState<number>(5);
   const [searchValueData, setSearchValueData] = useState<string>('w');
 
-  useEffect(() => {
+  const searchInputValue = useSelector<AppRootStateType, string>(
+    (state) => state.articles.searchValue
+  );
+
+  const searchSubmit = async (searchInputValue: string, API_KEY: string, sortBy: SortType, pageSize: number, page: number) => {
     try {
-      axiosInstance
-        .get(
-          `v2/everything?q=${searchValueData}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`,
-        )
-        .then((response) => setState(response.data.articles));
-    } catch (err: any) {
-      // console.error(err);
+      debugger
+      const data = await getArticlesLink(searchInputValue, API_KEY, sortBy, pageSize, page)
+      setState(data.articles);
+
     }
-  }, [page, pageSize, searchValueData, sortBy]);
+    catch  (err) {
+      return console.log(err);
+      
+    }
+  }
+
+
+
+
+  // useEffect(() => {
+  //   try {
+  //     axiosInstance
+  //       .get(
+  //         `v2/everything?q=${searchInputValue}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`,
+  //       )
+  //       .then((response) => setState(response.data.articles));
+  //   } catch (err: any) {
+  //     // console.error(err);
+  //   }
+  // }, [page, pageSize, searchInputValue, sortBy]);
 
   const paginate = (pageNumber: number) => setPage(pageNumber);
 
   return (
     <div className="page-wrap">
       <Header />
-      <SearchLine setSearchValueData={setSearchValueData} />
+      <SearchLine
+        setSearchValueData={setSearchValueData}
+        searchSubmit={searchSubmit}
+        sortBy={sortBy}
+        pageSize={pageSize}
+        page={page} />
       <RadioBtn setSortBy={setSortBy} sortBy={sortBy} />
       <Pagination
         page={page}

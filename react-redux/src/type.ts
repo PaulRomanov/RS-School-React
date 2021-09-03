@@ -11,6 +11,10 @@ export type CardProps = {
 
 export type Props = {
   setSearchValueData: (searchValueData: string) => void;
+  searchSubmit: (searchInputValue: string, API_KEY: string, sortBy:SortType, pageSize: number, page: number) => any;
+  sortBy: SortType;
+  pageSize: number;
+  page: number;
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

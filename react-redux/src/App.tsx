@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-// import { match } from 'assert';
 import React, { FC } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { BrowserRouter as Router, Redirect, Route, Switch, useLocation } from 'react-router-dom';
